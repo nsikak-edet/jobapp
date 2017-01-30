@@ -1,0 +1,432 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="de" lang="de">
+
+<!-- Mirrored from www.fertighauswelt.de/kontakt_termine/termine.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 07 Dec 2016 18:21:52 GMT -->
+<head>
+                                
+<title>FertighausWelt | Terminkalender</title>
+<meta name="description" content="" />
+<meta name="keywords" content="" />
+<meta name="author" content="BDF e.V." />
+<meta name="dcterms.rightsHolder" content="BDF e.V." />
+<meta name="robots" content="INDEX,FOLLOW" />
+<meta name="revisit-after" content="2 days" />
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<!--<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />-->
+<meta name="p:domain_verify" content="02140eebd8836c8b797748838529619d" />
+<link href="../css/fertighauswelt.css" rel="stylesheet" type="text/css" />
+<link rel="shortcut icon" type="image/x-icon" href="http://www.fertighauswelt.de/images/tpl/favicon.ico" />
+<!--[if IE 6]>
+<style type="text/css" media="screen">
+body { behavior: url(/css/csshover.htc); }
+</style>
+<![endif]-->
+<script src="../skripte/jquery-1.9.1.min.js" type="text/javascript"></script>
+<script src="../skripte/jquery-ui-1.10.3.custom.min.js" type="text/javascript"></script>
+<link href="../css/jquery-ui-1.10.3.custom.css" type="text/css" rel="stylesheet" />
+<link href="../css/fertighauswelt.css" type="text/css" rel="stylesheet" />
+<script src="../skripte/fullcalendar.js" type="text/javascript"></script>
+
+
+
+<link href="../css/fullcalendar.css" rel="stylesheet" type="text/css" />
+
+<script src="../js/skripte.js" type="text/javascript"></script>
+
+   
+    
+   
+
+
+<script type="text/javascript" >
+$(document).ready(function() {
+
+  $('#calendar').fullCalendar({
+                theme: false,
+                aspectRatio: 1.9,
+                allDayText: 'Ganztags',
+				monthNames: ["Januar", "Februar", "M&auml;rz", "April", "Mai", "Juni", "Juli", "August", "September", "Oktober", "November", "Dezember" ],
+				monthNamesAhort: ["Jan.", "Feb.", "M&auml;rz", "April", "Mai", "Juni", "Juli", "Aug.", "Sept.", "Okt.", "Nov.", "Dez." ],
+				dayNames: ["Sonntag", "Montag", "Dienstag", "Mittwoch", "Donnerstag", "Freitag", "Samstag"],
+				dayNamesShort: ["So.", "Mo.", "Di.", "Mi.", "Do.", "Fr.", "Sa."],
+				dayNamesMin: ["So", "Mo", "Di", "Mi", "Do", "Fr", "Sa"],
+                firstDay: 1,
+                axisFormat: 'HH:mm',
+                weekNumbers: true,
+                weekNumberTitle: 'KW ',
+                timeFormat: 'H:mm{ - H:mm} ',
+                agenda: 'H:mm{ - H:mm}',
+                buttonText: {
+                    prev:     '&lsaquo; zur&uuml;ck',
+                    next:     'weiter &rsaquo;',
+                    prevYear: '&laquo; vorheriges Jahr',
+                    nextYear: 'n&auml;chstes Jahr &raquo;',
+                    today:    'Heute',
+                    month:    'Monat',
+                    week:     'Woche',
+                    day:      'Tag'
+                },
+                columnFormat: {
+                    week: "ddd dd.MM.", 
+                    day: 'dddd, dd. MMMM'
+                },
+                titleFormat: {
+                    month: 'MMMM yyyy',
+                    week: "dd. { '-' dd. MMMM yyyy}", 
+                    day: 'dddd, dd. MMMM yyyy'
+                },
+                header: {
+    				left: 'title',
+    				center: '',
+    				right: 'prev,next today'
+    			},
+    			editable: false,
+    			events: "/kontakt_termine/json.html",
+                loading: function(bool) {
+    				if (bool) $('#loading').show();
+    				else $('#loading').hide();
+    			},
+                eventClick: function(calEvent, jsEvent, view) {
+					$("#cal_event").html('<span style="font-size:11px;">'+calEvent.details+'</span>');
+                    $("#cal_event").dialog({
+                        show: 'clip',
+                        hide: 'blind',
+                        width: 750,
+                        modal: true,
+                        autoOpen: true,
+                        title: 'Termindetails'
+                    });
+                }
+    		});
+
+    		$( ".date" ).datepicker( {
+				showOn: "button",
+			    buttonImage: "../images/calendar.gif",
+			    buttonImageOnly: true,
+			    beforeShow: function() {
+                    setTimeout(function(){
+                        $('.ui-datepicker').css('z-index', 100);
+                    }, 0);
+                },
+				showWeek: true,
+				firstDay: 1,
+				showButtonPanel: true,
+				showAnim: "slideDown",
+				dateFormat: "dd.mm.yy",
+				closeText: "Schlie&szlig;en",
+				currentText: "Heute",
+				prevText: "zurAzck",
+				nextText: "weiter",
+				monthNames: ["Januar", "Februar", "M&auml;rz", "April", "Mai", "Juni", "Juli", "August", "September", "Oktober", "November", "Dezember" ],
+				monthNamesShort: ["Jan.", "Feb.", "M&auml;rz", "April", "Mai", "Juni", "Juli", "Aug.", "Sept.", "Okt.", "Nov.", "Dez." ],
+				weekHeader: ["KW"],
+				dayNames: ["Sonntag", "Montag", "Dienstag", "Mittwoch", "Donnerstag", "Freitag", "Samstag"],
+				dayNamesShort: ["So.", "Mo.", "Di.", "Mi.", "Do.", "Fr.", "Sa."],
+				dayNamesMin: ["So", "Mo", "Di", "Mi", "Do", "Fr", "Sa"]
+		    });    
+
+
+
+
+})
+</script>
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','../../www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-19460064-1', 'auto');
+ga('require', 'displayfeatures');
+ga('set', 'anonymizeIp', true);
+ga('send', 'pageview');
+
+</script>
+</head>
+<body>
+<div class="wrapper">
+  <div class="header">
+  <a href="#" class="audioguide" alt="Audioguide" onclick="javascript:void window.open('http://www.fertighauswelt.de/audioguide.html','1433782178308','width=450,height=570,toolbar=0,menubar=0,location=0,status=1,scrollbars=0,resizable=1,left=0,top=0');return false;"></a>
+  <a href="http://www.fertighauswelt.de/haps-und-taps/" target="" class="hapstaps" alt="Haps und Taps"></a>
+<a href="http://www.fertighauswelt.de/"><img src="../images/tpl/fertighauswelt-logo.png" alt="Fertighaus Welt" /></a>
+	<div class="suche" style="text-align:right;">
+		
+		<form action="http://www.fertighauswelt.de/suche/index.html" method="post">
+		<br />
+		<input type="hidden" name="SEARCHSTARTPATH" value="/" />
+		<input type="submit" value="" class="suche_go" />
+		<input type="text" name="SEARCHSTRING" value=" Suche" onfocus="if(this.value == ' Suche') this.value='';" onblur="if (this.value=='') this.value=' Suche';" class="suche_input" />
+		
+		</form>
+	</div>
+  <div id="mainmenue"><a href="" title="Ausstellungen" class="subnav" >Ausstellungen</a><a href="" title="10 gute Gründe" class="subnav" >10 gute Gründe</a><a href="" title="Themen" class="subnav" >Themen</a><a href="" title="News" class="subnav" >News</a><a href="termine.html" title="Termine" class="subnav_active" >Termine</a><a href="" title="Kontakt &amp; Newsletter" class="subnav" >Kontakt &amp; Newsletter</a></div>
+  </div><!-- header -->
+  
+
+<div class="content">
+	<h1>
+	Termine</h1><p>
+	</p>
+<div style="clear:both;">
+	<div style="float:left;width:470px;">
+	<style type="text/css">
+	    .ui-datepicker,#cal_event2 { font-size: 11px !important; }
+		.MsoListParagraphCxSpFirst, .MsoListParagraphCxSpMiddle, .MsoListParagraphCxSpLast { margin: 0 0 0 25px; }
+	</style>
+		<h2 style="border-bottom: 1px solid #666666; padding-bottom: 10px; background: url(../images/tpl/suchen-icon.png) 0 -5px no-repeat;padding-left: 30px;">Suche</h2>
+		
+		<form method="post" name="suchen" id="suchen1" action="http://www.fertighauswelt.de/kontakt_termine/suchen.html">
+		<table border="0" cellpadding="2" cellspacing="0">
+			<tr>
+				<td><b>Hersteller</b></td>
+				<td><select name="hersteller" style="width:250px;" class="hersteller"><option value="0">Alle</option><option value="66">allkauf haus</option><option value="9">Bau-Fritz GmbH & Co.KG</option><option value="24">BDF</option><option value="35">Bien-Zenker GmbH</option><option value="29">Büdenbender Hausbau GmbH</option><option value="4">Fertighauswelt</option><option value="12">FingerHaus GmbH</option><option value="72">Fingerhut Haus</option><option value="45">Fingerhut Haus GmbH + Co. KG</option><option value="33">FischerHaus GmbH & Co. KG</option><option value="64">GRIFFNER</option><option value="67">Gruber Innenausbau-Holzbau</option><option value="11">Haacke-Haus</option><option value="46">Haas Fertigbau GmbH</option><option value="32">HANLO-Haus</option><option value="30">HANSE HAUS GmbH</option><option value="3">HDH</option><option value="53">HUF HAUS Köln</option><option value="54">HUF HAUS VKB Nürnberg</option><option value="58">KAMPA GmbH</option><option value="63">LUXHAUS </option><option value="61">massa haus</option><option value="49">massa haus GmbH</option><option value="55">Meisterstück-HAUS</option><option value="65">Messe Offenburg</option><option value="59">OKAL Haus</option><option value="13">Pr-Agentur Große & Partner</option><option value="37">Regnauer Hausbau GmbH & Co. KG</option><option value="17">RENSCH-HAUS GMBH</option><option value="62">Rubner Haus AG</option><option value="22">SCHWABENHAUS GmbH + Co. KG</option><option value="21">SchwörerHaus KG</option><option value="76">Streif HAUS</option><option value="36">TALBAU-Haus</option><option value="15">TAL_Wohnbau GmbH</option><option value="43">WeberHaus</option></select>
+				</td>
+			</tr>
+			<tr>
+				<td><b>Sachgebiet</b></td>
+				<td>
+					<select name="sachgebiet" style="width:250px;" class="sachgebiet"><option value="0">Alle</option><option value="Hausaufstellung">Hausaufstellung</option><option value="Hausausstellung">Hausausstellung</option><option value="Informationsveranstaltung">Informationsveranstaltung</option><option value="Kundenhausbesichtigung">Kundenhausbesichtigung</option><option value="Musterhauseröffnung">Musterhauseröffnung</option><option value="Richtfest">Richtfest</option><option value="Sonstiges">Sonstiges</option></select>
+				</td>
+			</tr>
+			<tr>
+				<td><b>PLZ:</b></td>
+				<td><input type="text" name="plz" value="" maxlength="5" style="width:75px;" /> (im Umkreis von 50 km)</td>
+			</tr>
+			<tr>
+				<td><b>Beginn:</b></td>
+				<td><input type="text" name="start" value="07.12.2016" class="date" style="width:75px;" /> *</td>
+			</tr>
+			<tr>
+				<td><b>Ende:</b></td>
+				<td><input type="text" name="ende" value="04.01.2017" class="date" style="width:75px;" /> *</td>
+			</tr>
+			<tr>
+				<td>&nbsp;</td>
+				<td><input type="submit" name="suchen" value="suchen" /> &nbsp; </td>
+			</tr>
+		</table><br />* = Pflichtfeld</form>	
+<div class="data-tables">
+
+<div class="container1">
+
+<table id="example" class="display" cellspacing="0" width="100%"><thead><tr><th>Name</th><th>Position</th><th>Office</th><th>Salary</th></tr></thead><tbody><tr><td>Tiger Nixon</td><td>System Architect</td><td>Edinburgh</td><td>$320,800</td></tr><tr><td>Garrett Winters</td><td>Accountant</td><td>Tokyo</td><td>$170,750</td></tr><tr><td>Ashton Cox</td><td>Junior Technical Author</td><td>San Francisco</td><td>$86,000</td></tr><tr><td>Cedric Kelly</td><td>Senior Javascript Developer</td><td>Edinburgh</td><td>$433,060</td></tr><tr><td>Airi Satou</td><td>Accountant</td><td>Tokyo</td><td>$162,700</td></tr><tr><td>Brielle Williamson</td><td>Integration Specialist</td><td>New York</td><td>$372,000</td></tr><tr><td>Herrod Chandler</td><td>Sales Assistant</td><td>San Francisco</td><td>$137,500</td></tr><tr><td>Rhona Davidson</td><td>Integration Specialist</td><td>Tokyo</td><td>$327,900</td></tr><tr><td>Colleen Hurst</td><td>Javascript Developer</td><td>San Francisco</td><td>$205,500</td></tr><tr><td>Sonya Frost</td><td>Software Engineer</td><td>Edinburgh</td><td>$103,600</td></tr><tr><td>Jena Gaines</td><td>Office Manager</td><td>London</td><td>$90,560</td></tr><tr><td>Quinn Flynn</td><td>Support Lead</td><td>Edinburgh</td><td>$342,000</td></tr><tr><td>Charde Marshall</td><td>Regional Director</td><td>San Francisco</td><td>$470,600</td></tr><tr><td>Haley Kennedy</td><td>Senior Marketing Designer</td><td>London</td><td>$313,500</td></tr><tr><td>Tatyana Fitzpatrick</td><td>Regional Director</td><td>London</td><td>$385,750</td></tr><tr><td>Michael Silva</td><td>Marketing Designer</td><td>London</td><td>$198,500</td></tr><tr><td>Paul Byrd</td><td>Chief Financial Officer (CFO)</td><td>New York</td><td>$725,000</td></tr><tr><td>Gloria Little</td><td>Systems Administrator</td><td>New York</td><td>$237,500</td></tr><tr><td>Bradley Greer</td><td>Software Engineer</td><td>London</td><td>$132,000</td></tr><tr><td>Dai Rios</td><td>Personnel Lead</td><td>Edinburgh</td><td>$217,500</td></tr><tr><td>Jenette Caldwell</td><td>Development Lead</td><td>New York</td><td>$345,000</td></tr><tr><td>Yuri Berry</td><td>Chief Marketing Officer (CMO)</td><td>New York</td><td>$675,000</td></tr><tr><td>Caesar Vance</td><td>Pre-Sales Support</td><td>New York</td><td>$106,450</td></tr><tr><td>Doris Wilder</td><td>Sales Assistant</td><td>Sidney</td><td>$85,600</td></tr><tr><td>Angelica Ramos</td><td>Chief Executive Officer (CEO)</td><td>London</td><td>$1,200,000</td></tr><tr><td>Gavin Joyce</td><td>Developer</td><td>Edinburgh</td><td>$92,575</td></tr><tr><td>Jennifer Chang</td><td>Regional Director</td><td>Singapore</td><td>$357,650</td></tr><tr><td>Brenden Wagner</td><td>Software Engineer</td><td>San Francisco</td><td>$206,850</td></tr><tr><td>Fiona Green</td><td>Chief Operating Officer (COO)</td><td>San Francisco</td><td>$850,000</td></tr><tr><td>Shou Itou</td><td>Regional Marketing</td><td>Tokyo</td><td>$163,000</td></tr><tr><td>Michelle House</td><td>Integration Specialist</td><td>Sidney</td><td>$95,400</td></tr><tr><td>Suki Burks</td><td>Developer</td><td>London</td><td>$114,500</td></tr><tr><td>Prescott Bartlett</td><td>Technical Author</td><td>London</td><td>$145,000</td></tr><tr><td>Gavin Cortez</td><td>Team Leader</td><td>San Francisco</td><td>$235,500</td></tr><tr><td>Martena Mccray</td><td>Post-Sales support</td><td>Edinburgh</td><td>$324,050</td></tr><tr><td>Unity Butler</td><td>Marketing Designer</td><td>San Francisco</td><td>$85,675</td></tr><tr><td>Howard Hatfield</td><td>Office Manager</td><td>San Francisco</td><td>$164,500</td></tr><tr><td>Hope Fuentes</td><td>Secretary</td><td>San Francisco</td><td>$109,850</td></tr><tr><td>Vivian Harrell</td><td>Financial Controller</td><td>San Francisco</td><td>$452,500</td></tr><tr><td>Timothy Mooney</td><td>Office Manager</td><td>London</td><td>$136,200</td></tr><tr><td>Jackson Bradshaw</td><td>Director</td><td>New York</td><td>$645,750</td></tr><tr><td>Olivia Liang</td><td>Support Engineer</td><td>Singapore</td><td>$234,500</td></tr><tr><td>Bruno Nash</td><td>Software Engineer</td><td>London</td><td>$163,500</td></tr><tr><td>Sakura Yamamoto</td><td>Support Engineer</td><td>Tokyo</td><td>$139,575</td></tr><tr><td>Thor Walton</td><td>Developer</td><td>New York</td><td>$98,540</td></tr><tr><td>Finn Camacho</td><td>Support Engineer</td><td>San Francisco</td><td>$87,500</td></tr><tr><td>Serge Baldwin</td><td>Data Coordinator</td><td>Singapore</td><td>$138,575</td></tr><tr><td>Zenaida Frank</td><td>Software Engineer</td><td>New York</td><td>$125,250</td></tr><tr><td>Zorita Serrano</td><td>Software Engineer</td><td>San Francisco</td><td>$115,000</td></tr><tr><td>Jennifer Acosta</td><td>Junior Javascript Developer</td><td>Edinburgh</td><td>$75,650</td></tr><tr><td>Cara Stevens</td><td>Sales Assistant</td><td>New York</td><td>$145,600</td></tr><tr><td>Hermione Butler</td><td>Regional Director</td><td>London</td><td>$356,250</td></tr><tr><td>Lael Greer</td><td>Systems Administrator</td><td>London</td><td>$103,500</td></tr><tr><td>Jonas Alexander</td><td>Developer</td><td>San Francisco</td><td>$86,500</td></tr><tr><td>Shad Decker</td><td>Regional Director</td><td>Edinburgh</td><td>$183,000</td></tr><tr><td>Michael Bruce</td><td>Javascript Developer</td><td>Singapore</td><td>$183,000</td></tr><tr><td>Donna Snider</td><td>Customer Support</td><td>New York</td><td>$112,000</td></tr></tbody></table>
+      
+    </div>
+
+<script type="text/javascript">
+  // For demo to fit into DataTables site builder...
+  $('#example')
+    .removeClass( 'display' )
+    .addClass('table table-striped table-bordered');
+</script>
+<br><br>
+<a href="//datatables.net/reference/button/pdf"><code class="button" title="Buttons button type">pdf</code></a>
+<a href="//datatables.net/reference/button/pdfHtml5"><code class="button" title="Buttons button type">CSVHtml5</code></a>
+
+<script type="text/javascript">$('#myTable').DataTable( {
+    buttons: [
+        'pdf'
+    ]
+} );
+
+
+$('#myTable').DataTable( {
+    buttons: [
+        {
+            extend: 'pdf',
+            text: 'Save current page',
+            exportOptions: {
+                modifier: {
+                    page: 'current'
+                }
+            }
+        }
+    ]
+} );
+</script>
+
+</div>
+
+
+
+
+
+
+
+
+
+    	<script>
+		<!--
+		$("#reset").click(function() { $( "#ergebnis" ).html(''); });
+		$("#suchen1").submit(function(event) {
+            event.preventDefault();
+
+            var $form = $( this ),
+                hersteller 	= $('select.hersteller option:selected').val(),
+                sachgebiet 	= $('select.sachgebiet option:selected').val(),
+                plz  		= $('input[name="plz"]').val(),
+                beginn  	= $('input[name="start"]').val(),
+                ende	  	= $('input[name="ende"]').val(),
+                url 		= $form.attr( 'action' );
+            var posting = $.post( url, { plz: plz, hersteller: hersteller, sachgebiet: sachgebiet, beginn: beginn, ende: ende, suche: 1 } );
+
+            posting.done(function( data ) {      
+                //var content = $( data ).find( '#content' );
+    		        $( "#ergebnis" ).html( data );
+            });
+		});
+		//-->
+		</script>
+	</div>
+	<div style="float:right;width:370px;">	<form action="http://www.
+	.de/kontakt_termine/.html" method="post">
+		<h2 style="border-bottom: 1px solid #666666; padding-bottom: 10px; background: url(../images/tpl/mitglieder-icon.png) 0 -5px no-repeat;padding-left: 30px;">Mitglieder-Login</h2>
+		<input type="text" value="E-Mail" name="username" id="usrname" onfocus="if(this.value == 'E-Mail') this.value='';" onblur="if (this.value=='') this.value='E-Mail';" style="width:105px;border:1px solid #cccccc;font-size:11px;font-family:Arial;" />
+		<input type="password" value="*******" name="passwort" id="passwort" onfocus="if(this.value == '*******') this.value='';" onblur="if (this.value=='') this.value='*******';" style="width:105px;border:1px solid #cccccc;font-size:11px;font-family:Arial;" />
+		<input type="submit" name="einloggen" value="Login" style="width:35x;border:1px solid #cccccc;font-size:11px;" />
+				<div style="font-size:10px;padding-top:5px;">BDF-Mitglieder können ihre Termine in den Kalender eintragen.<br />Wenn Sie noch nicht registriert sind können Sie sich <a href="anmeldung.html">hier</a> anmelden.</div>
+	</form>
+</div>
+</div>
+<br style="clear: both;"/>
+<div id="ergebnis"></div>
+<br style="clear: both;"/>
+<div style="height:16px;text-align:center;">
+	<div id="loading" style="display:none;"><img src="../images/tpl/ajax-loader.gif" alt="" /> Termine werden geladen...</div>
+</div><div id="cal_event2"></div>
+<div id="cal_event"></div>
+<!-- <div id="calendar"></div> -->
+
+<br style="clear: both;" />
+  </div>
+
+
+</div><!-- wrapper -->
+<br style="clear: both;" />
+<div class="footer">
+  <div class="footerwrap">
+    <div class="breadcrump">
+    <h3>Sie befinden sich hier:</h3> 
+<div class="track_me">
+<div itemscope itemtype="#" style="display:inline;">
+<a href="#" itemprop="url"><span itemprop="title">Home</span></a>
+</div>
+<img src='../images/tpl/trackpfeil.png' style='position:absolute; top: -2px;' alt='' />
+<div itemscope itemtype="#" style="display:inline; margin-left: 20px;">
+<a href="#" title="Kontakt" itemprop="url"><span itemprop="title">Kontakt</span></a></div></div> 
+    </div>
+    <div class="footersearch">
+     	<div class="suche">
+		   <br />
+		<form action="#" method="post">
+		<br />
+		<input type="hidden" name="SEARCHSTARTPATH" value="/" />
+		<input type="text" name="SEARCHSTRING" value=" Suche" onfocus="if(this.value == ' Suche') this.value='';" onblur="if (this.value=='') this.value=' Suche';" class="suche_input" />
+		<input type="submit" value="" class="suche_go"/> 
+		</form>
+	</div>
+    </div>
+    <br style="clear: both;" /><br />
+    <div class="footerbox">
+      <h3>Fertighauswelt.de<br /> ist ein Service von:</h3> 
+      <img src="../images/tpl/footerlogo.png" alt="" /><br /><br />
+Flutgraben 2<br />
+53604 Bad Honnef<br />
+Tel: +49 (0) 22 24/93 77-0<br />
+Fax: +49 (0) 22 24/93 77-77
+         
+    </div>
+    <div class="footerbox">
+      <h3>BDF 2.0<br /> Social Bookmarks</h3>
+        <a href="#" style="margin-bottom: 10px;" target="_blank" class="facebook">Fertighauswelt auf Facebook</a>
+        <a href="#" target="_blank" style="margin-bottom: 10px;" class="twitter">Fertighauswelt bei Twitter</a>
+        <a href="#" style="margin-bottom: 10px;" target="_blank" class="youtube">Fertighauswelt auf YouTube</a>
+        <a href="#" target="_blank" class="flickr">Fertighauswelt auf flickr</a>
+        <a href="#" target="_blank" class="pinterest">Fertighauswelt auf Pinterest</a>
+<a href="#" rel="publisher" style="margin-bottom: 10px;" target="_blank" class="googleplus">Fertighauswelt auf google+</a>
+    <br style="clear:both;" />
+    </div>
+    <div class="footerbox">
+      <h3><br />Sitemap</h3> 
+        <ul class="">
+          <li><a href="#">Home</a></li>
+          <li><a href="#">Ausstellungen</a></li>
+          <li><a href="#">10 gute Gr&uuml;nde</a></li>
+          <li><a href="#">Kontakt & Newsletter</a></li>
+          <li><a href="#">Termine</a></li>
+          <li><a href="#">Themen</a></li>
+          <li><a href="#">Impressum</a></li>        
+        </ul> 
+    </div>
+    <div class="footerbox" style="border-right: none;">
+      <h3><br />Newsletter</h3> 
+      Kurz und b&uuml;ndig, top-aktuell, jeden Monat neu, gratis und direkt in den Briefkasten Ihres PCs: Der FertighausWelt E-Mail Newsletter für:   <br /><br />
+<ul class="">
+          <li><a href="#">FertighausWelt Hannover</a></li>
+          <li><a href="#">FertighausWelt N&uuml;rnberg</a></li>
+          <li><a href="#">FertighausWelt K&ouml;ln</a></li>
+          <li><a href="#">FertighausWelt Wuppertal</a></li>    
+        </ul> 
+    </div>
+    <br style="clear: both;" />
+  <h3>Partner</h3>
+<a href="#" target="_blank"><img src="../images/holzindustrie.png" alt="Holzindustrie" /></a>
+  </div><!--footerwrap -->
+</div><!--footer -->
+
+
+    
+<script src="../skripte/all.js" type="text/javascript"></script> 
+<!-- Google Code für ein Remarketing-Tag -->
+<!--
+Remarketing-Tags dürfen nicht mit personenbezogenen Daten verknüpft oder auf Seiten platziert werden, die sensiblen Kategorien angehören. Weitere Informationen und Anleitungen zur Einrichtung des Tags erhalten Sie unter: http://google.com/ads/remarketingsetup
+-->
+<script type="text/javascript">
+/* <![CDATA[ */
+var google_conversion_id = 986696506;
+var google_custom_params = window.google_tag_params;
+var google_remarketing_only = true;
+/* ]]> */
+</script>
+<script type="text/javascript" src="../../www.googleadservices.com/pagead/f.txt">
+</script>
+<noscript>
+<div style="display:inline;">
+<img height="1" width="1" style="border-style:none;" alt="" src="http://googleads.g.doubleclick.net/pagead/viewthroughconversion/986696506/?value=0&amp;guid=ON&amp;script=0"/>
+</div>
+</noscript>
+
+<script type="text/javascript">
+
+function slideSwitch() {
+    var $active = $('#slideshow IMG.active');
+
+    if ( $active.length == 0 ) $active = $('#slideshow IMG:last');
+
+    var $next =  $active.next().length ? $active.next()
+        : $('#slideshow IMG:first');
+
+    $active.addClass('last-active');
+
+    $next.css({opacity: 0.0})
+        .addClass('active')
+        .animate({opacity: 1.0}, 800, function() {
+            $active.removeClass('active last-active');
+        });
+}
+
+$(function() {
+    setInterval( "slideSwitch()", 3000 );
+});
+
+</script>
+<script type="text/javascript">
+var url = escape(document.URL);
+url = url.replace(/\//g,"_");
+document.write("<"+"img src=\"https://www.rvty.net/goto/px/key/552fc0b664ef4/sub_id/"+url+"\" width=\"1\" height=\"1\""+"></"+"img>");
+</script>
+</body>
+
+<!-- Mirrored from www.fertighauswelt.de/kontakt_termine/termine.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 07 Dec 2016 18:22:05 GMT -->
+</html>
