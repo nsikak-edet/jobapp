@@ -46,7 +46,6 @@ class Template
                 show_error('Unable to load the requested file: ' . $tpl_view . '/' . $body_view . '.php');
             }
 
-            $data['small_menu'] = $this->ci->load->view('body/small_menu.php',array(),TRUE);
 
             //load body template
             $body = $this->ci->load->view($body_view_path, $data, TRUE);
@@ -65,18 +64,9 @@ class Template
 
     public function addData($key,$value){
         $this->data[$key] = $value;
-
     }
 
-    public function getPDFTemplate($file_path,$rows){
-
-        $user_id = $this->ci->session->userdata('id');
-        $this->ci->load->model("user_model");
-        $user = $this->ci->user_model->get_user_by_branch_id($user_id);
-
-        $data['branch'] = $user[0]->branch;
-        $data['rows'] = $rows;
-
+    public function getPDFTemplate($file_path,$data){
         $content = $this->ci->load->view($file_path, $data, TRUE);
         return $content;
 

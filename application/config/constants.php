@@ -85,5 +85,6 @@ define('EXIT__AUTO_MIN', 9); // lowest automatically-assigned error code
 define('EXIT__AUTO_MAX', 125); // highest automatically-assigned error code
 
 
-define('JAHR_FILENAME','jahr');
-define('BE_FILENAME','be');
+define('RECORD_PER_PAGE','100');
+define('PDF_W_FILE_NAME','pdfw');
+define('PDF_FILE_NAME','pdf');

@@ -1,70 +1,112 @@
 <!DOCTYPE html>
 <html lang="en">
+<meta http-equiv="content-type" content="text/html;charset=UTF-8" />
 <head>
-    <meta charset="UTF-8">
-    <meta name="p:domain_verify" content="02140eebd8836c8b797748838529619d" />
-    <title>FertigHausWelt-Login</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Adio Consultancy</title>
 
-    <!--favicon-->
-    <link rel="shortcut icon" type="image/x-icon" href="http://www.fertighauswelt.de/images/tpl/favicon.ico" />
+    <!-- Global stylesheets -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,100,500,700,900" rel="stylesheet" type="text/css">
+    <link href="<?php echo getAssetsURL(); ?>/assets/css/icons/icomoon/styles.css" rel="stylesheet" type="text/css">
+    <link href="<?php echo getAssetsURL(); ?>/assets/css/bootstrap.css" rel="stylesheet" type="text/css">
+    <link href="<?php echo getAssetsURL(); ?>/assets/css/core.css" rel="stylesheet" type="text/css">
+    <link href="<?php echo getAssetsURL(); ?>/assets/css/components.css" rel="stylesheet" type="text/css">
+    <link href="<?php echo getAssetsURL(); ?>/assets/css/colors.css" rel="stylesheet" type="text/css">
+    <!-- /global stylesheets -->
 
-    <!--[if IE 6]>
-    <style type="text/css" media="screen">
-        body { behavior: url(<?php echo getAssetsURL(); ?>/css/csshover.htc); }
-    </style>
-    <![endif]-->
+    <!-- Core JS files -->
+    <script type="text/javascript" src="<?php echo getAssetsURL(); ?>/assets/js/plugins/loaders/pace.min.js"></script>
+    <script type="text/javascript" src="<?php echo getAssetsURL(); ?>/assets/js/core/libraries/jquery.min.js"></script>
+    <script type="text/javascript" src="<?php echo getAssetsURL(); ?>/assets/js/core/libraries/bootstrap.min.js"></script>
+    <script type="text/javascript" src="<?php echo getAssetsURL(); ?>/assets/js/plugins/loaders/blockui.min.js"></script>
+    <!-- /core JS files -->
 
-    <!-- CSS -->
-    <link href="<?php echo getAssetsURL(); ?>/css/fertighauswelt.css" rel="stylesheet" type="text/css" />
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <!--<link href="css/bootstrap-3.3.7.min.css" rel="stylesheet" type="text/css" />-->
-    <link href="<?php echo getAssetsURL(); ?>/css/login.css" rel="stylesheet" type="text/css" />
-    <!-- JQuery -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
+    <!-- Theme JS files -->
+    <script type="text/javascript" src="<?php echo getAssetsURL(); ?>/assets/js/core/app.js"></script>
+    <!-- /theme JS files -->
 
 </head>
+
 <body>
-<div id="login-container" class="container-fluid">
-    <div class="col-lg-6 well text-center" id="form-container">
-        <img src="<?php echo getAssetsURL(); ?>/images/tpl/fertighauswelt-logo.png" alt="FertigHausWelt Logo" id="form-img">
 
-        <!-- LOGIN FORM --->
-        <form id="loginForm" action="" method="post">
-            <!--<h2 style="border-bottom: 1px solid #666666; padding-bottom: 10px; background: url(./images/tpl/mitglieder-icon.png) 0 -5px no-repeat;">Mitglieder-Login</h2>-->
-            <div class="form-group form-group-sm">
+<!-- Main navbar -->
+<div class="navbar navbar-inverse" style="background:#2196F3">
+    <div class="navbar-header">
+        <h3 style="margin-top:5px;margin-left:30px;">Adio Consultancy</h3>
+    </div>
 
-                <!-- select branch -->
-                <select id="filien" class="form-control"name="branch_id" required>
-                    <option value="0"><?php echo convertToUTF8("Filiale auswählen") ?></option>
-                    <?php
-                    foreach($branches as $branch){
-                        $br = htmlspecialchars($branch->branch);
-                        $branch_id = (int)$branch->id;
-                        @$options .= "<option value='$branch_id'>$br</option>";
-                    }
-                    echo $options;
-                    ?>
-                </select>
-                <!-- /select branch -->
+    <div class="navbar-collapse collapse" id="navbar-mobile">
+        <ul class="nav navbar-nav navbar-right">
 
-            </div>
-            <div class="form-group form-group-sm">
-                <input type="password" placeholder="Passwort" id="password" name="password" class="form-control" required>
-                <span style="color:red"><?php echo convertToUTF8(@$login_error_msg); ?></span>
-            </div>
-            <div class="form-group form-group-sm">
-                <input type="submit" name="login" class="btn btn-default pull-right" value="Anmeldung" id="btn-login"><br>
-            </div>
-        </form>
-        <br>
-        <!--- /LOGIN FORM --->
-
-        <br>
-        <div style="font-size:10px;padding-top:5px; text-align: left">Loggen sie sich mit den Ihnen bekannten Filialdaten
-            ein.
-        </div>
+        </ul>
     </div>
 </div>
+<!-- /main navbar -->
+
+<!-- Page container -->
+<div class="page-container login-container">
+
+    <!-- Page content -->
+    <div class="page-content">
+
+        <!-- Main content -->
+        <div class="content-wrapper">
+
+            <!-- Content area -->
+            <div class="content">
+
+                <!-- Simple login form -->
+                <form method="post">
+                    <div class="panel panel-body login-form">
+                        <div class="text-center">
+                            <div class=""><hr><br></div>
+                            <h5 class="content-group">Admin Login <small class="display-block">Enter admin credentials below</small></h5>
+                        </div>
+
+                        <div class="form-group has-feedback has-feedback-left">
+                            <input type="text" name="username" class="form-control" placeholder="Username">
+                            <div class="form-control-feedback">
+                                <i class="icon-user text-muted"></i>
+                            </div>
+                            <div class="text-danger"><?php echo form_error('username') ?></div>
+                        </div>
+
+                        <div class="form-group has-feedback has-feedback-left">
+                            <input type="password" name="password" class="form-control" placeholder="Password">
+                            <div class="form-control-feedback">
+                                <i class="icon-lock2 text-muted"></i>
+                            </div>
+                            <div class="text-danger"><?php echo form_error('password') ?><?php echo @$invalid_details; ?></div>
+                        </div>
+
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-primary btn-block">Login <i class="icon-circle-right2 position-right"></i></button>
+                        </div>
+                    </div>
+                </form>
+                <!-- /simple login form -->
+
+
+                <!-- Footer -->
+                <div class="footer text-muted">
+                    &copy; <?php echo date('Y'); ?> <a href="#">Adio Consultancy</a> All rights reserved
+                </div>
+                <!-- /footer -->
+
+            </div>
+            <!-- /content area -->
+
+        </div>
+        <!-- /main content -->
+
+    </div>
+    <!-- /page content -->
+
+</div>
+<!-- /page container -->
 
 </body>
 </html>

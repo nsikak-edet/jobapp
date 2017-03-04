@@ -1,164 +1,97 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class App extends CI_Controller {
+class App extends CI_Controller
+{
 
-	public function __construct(){
-		parent::__construct();
+    public function __construct()
+    {
+        parent::__construct();
+    }
 
-		ini_set('display_errors', 0);
+    /**
+     * Register new applicaiton - request handler
+     */
+    public function index()
+    {
+        $data['page_title'] = "Applicant Registration Form";
+        $application_form = $this->input->post('application_form',TRUE);
 
-		//protect controller from unauthorized access -> only login users can access this controller
-		if($this->authenticate->is_valid_session() == false)
-			$this->authenticate->logout();
+        /***
+         * If number of submitted applications is = 4, alert application closed
+         */
+        $this->load->model('vacancy_model');
+        $this->load->model('applicant_model');
+        $submitted_applications = $this->applicant_model->count_applications();
+        $vacancy_limit = $this->vacancy_model->get_limit();
+        if($vacancy_limit->applicants == $submitted_applications){
+            $this->template->load("default", 'limit', $data);
+            return;
+        }
 
-		//load user model
-		$this->load->model("user_model");
-		$this->load->model('invitations_model');
-		$this->load->model('report_model');
-	}
+        //process new application form on submit
+        if($application_form != null){
 
-	/**
-	 * Index Page for this controller.
-	 */
-	public function index()
-	{
-		$this->template->load("default","dashboard");
-	}
+            //validate form data
+            $this->load->library("form_validation");
+            $this->form_validation->set_rules('first_name','First Name','trim|required');
+            $this->form_validation->set_rules('surname','Surname','trim|required');
+            $this->form_validation->set_rules('phone_number','Phone Number','trim|required|numeric');
+            $this->form_validation->set_rules('email','Email','trim|required|valid_email');
+            $passport = upload_passport('passport');
 
-	public function firma()
-	{
-		$this->template->load("default","firmas");
-	}
+            //submit form data into database on successful validation
+            if($this->form_validation->run() == true && isset($passport['upload_data']))
+            {
+                $new_applicant = array(
+                    'first_name' => $this->input->post('first_name',TRUE),
+                    'surname' => $this->input->post('surname',TRUE),
+                    'phone_number' => $this->input->post('phone_number',TRUE),
+                    'email' => $this->input->post('email',TRUE),
+                    'passport' => $passport['upload_data']['file_name'],
+                    'date_created' => date('Y-m-d H:i:s')
+                );
 
-	/***
-	 * Handle berater listing page
-	 */
-	public function add_berater(){
-		$this->template->load("default","consultants");
-	}
-
-
-	/****
-	 * Handles Datatables editor form [needed for dashboard to load correctly]
-	 */
-	public function ajax_ee(){
-		//Load our library EditorLib
-		$this->load->library('EditorLib');
-
-		//`Call the process method to process the posted data
-		$this->editorlib->process($_POST);
-	}
-
-	/****
-	 * Handles Datatables editor form [needed for dashboard to load correctly] - consultants form
-	 */
-	public function ajax_berater(){
-		//Load our library EditorLib
-		$this->load->library('EditorLib');
-
-		//`Call the process method to process the posted data
-		$this->editorlib->process_consultants($_POST);
-	}
-
-	/****
-	 * Handles Datatables editor form [needed for dashboard to load correctly] - consultants form
-	 */
-	public function ajax_firma(){
-		//Load our library EditorLib
-		$this->load->library('EditorLib');
-
-		//`Call the process method to process the posted data
-		$this->editorlib->process_firma($_POST);
-
-	}
-
-	/***
-	 * List consulants options -> berater
-	 */
-	public function ajax_op(){
-		//Load our library EditorLib
-		$this->load->library('EditorLib');
-
-		//`Call the process method to process the posted data
-		$this->editorlib->process_con_opts($_POST);
-	}
-
-	/***
-	 * Handle Form request -> Bericht erstellen
-	 */
-	public function be(){
-
-		$company = $this->input->post("company",TRUE);
-		$month = $this->input->post("month",TRUE);
-		$year = $this->input->post("year",TRUE);
-
-		//process form on button clicked
-		if($company !== null){
-			$user_id = $this->session->userdata('id');
-			$invitations = $this->invitations_model->search_invitations($company,$month,$year,$user_id);
-			$this->session->set_flashdata("invitations", $invitations);
-
-			redirect('app/be');
-		}
-
-		if($this->session->flashdata("invitations") !== FALSE)
-		{
-			$data['invitations'] = $this->session->flashdata("invitations");
-		}
-
-		$data['companies'] = $this->invitations_model->get_companies($this->session->userdata('id'));
-		$data['months'] = $this->invitations_model->get_months();
-		$this->template->load("default","search",$data);
-	}
-
-	/***
-	 * Request for yearly report - all reports
-	 */
-	public function jar(){
-
-		$year = $this->input->get('year',TRUE);
-		$data['records'] = $this->report_model->get_report($year);
-		$data['multipliers'] = $this->report_model->get_multipliers();
-		$this->template->load("default","report",$data);
-	}
-
-	/***
-	 * Request for yearly report for specific filiale
-	 */
-	public function jara(){
-		$user_id = $this->session->userdata('id');
-		$year = $this->input->get('year',TRUE);
-		$month = $this->input->get('month',TRUE);
-		$data['records'] = $this->report_model->get_filiale_report_all($year,$month,$user_id);
-		$data['multipliers'] = $this->report_model->get_multipliers();
-		$data['months'] = $this->invitations_model->get_months();
-		$this->template->load("default","report_filiale_all",$data);
-	}
+                //load applicant model
+                $this->load->model('applicant_model');
+                $this->applicant_model->save($new_applicant);
 
 
-	/***
-	 * Request for yearly report for current filiale
-	 */
-	public function jarf(){
-		$user_id = $this->session->userdata('id');
-		$year = $this->input->get('year',TRUE);
-		$data['records'] = $this->report_model->get_filiale_report($year,$user_id);
-		$data['multipliers'] = $this->report_model->get_multipliers();
-		$this->template->load("default","report_filiale",$data);
-	}
+                //alert user of a successful form submission
+                $this->session->set_flashdata('success',1);
+                redirect(base_url());
+            }
 
-	public function help(){
-		$this->template->load("default","help",@$data);
-	}
+        }
 
-	public function logout(){
-		$this->authenticate->logout();
-	}
+        $body = "applicant_form";
 
-	public function pdf($file_name = JAHR_FILENAME){
-		$this->load->library('PDFGenerator');
-		$this->pdfgenerator->printPDFToBrowser($file_name);
-	}
+        //load success page
+        if($this->session->flashdata('success')){
+            $body = 'success';
+        }
+
+        //passport error
+        $data['passport_error'] = @$passport['error'];
+        $this->template->load("default", $body, $data);
+    }
+
+    public function applicants(){
+        //secure method from unauthorize execution
+        $this->authenticate->permit_valid_user();
+        $this->load->model('applicant_model');
+
+        $data['page_title'] = "Applicants";
+        $applications = $this->applicant_model->get_applications();
+        $data['applicants'] = $applications;
+
+        $this->template->load("default", 'applicants', $data);
+    }
+
+    public function odd_even(){
+        $integers = array(1,2,3,4,5);
+        $difference = sum_odd_even($integers);
+//        echo $difference;
+    }
 
 }
